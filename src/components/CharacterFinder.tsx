@@ -4,10 +4,12 @@ import axios from 'axios';
 const CharacterFinder = () => {
     const [pokemon, setPokemon] = useState('');
 
+    axios.defaults.baseURL = 'https://pokeapi.co/api/v2';
+
     const clickPokemon = async (event: React.FormEvent) => {
         event.preventDefault();
         try {
-            const character = await axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemon}`);
+            const character = await axios.get(`/pokemon/${pokemon}`);
             console.log(character.data);
         } catch (error) {
             console.log(error);
