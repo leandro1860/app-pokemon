@@ -1,7 +1,12 @@
 import React from 'react';
+import CharacterFinder from './components/CharacterFinder';
 
 function App() {
-    return <div className="text-4xl">POKEMON</div>;
+    return (
+        <div>
+            <CharacterFinder />
+        </div>
+    );
 }
 
 export default App;
