@@ -16,7 +16,7 @@ const CharacterFinder = () => {
         }
     };
     return (
-        <form onSubmit={clickPokemon} className="p-4 flex justify-center">
+        <form onSubmit={clickPokemon} className="p-4 flex justify-center mb-5">
             <div className="bg-white flex items-center rounded-full shadow-xl w-96">
                 <div className="p-4">
                     <button
