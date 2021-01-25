@@ -4,7 +4,7 @@ const initialState = {
     stateModal: false,
 };
 
-export default function todoReducer(state = initialState, action: any) {
+export default function reducerModal(state = initialState, action: any) {
     switch (action.type) {
         case OPEN_MODAL:
             return {

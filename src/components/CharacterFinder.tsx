@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { updateStateModal } from '../store/actions/action.modal';
+import { updateDataCharacter } from '../store/actions/action.dataCharacter';
+
 import axios from 'axios';
 
 const CharacterFinder = () => {
@@ -13,6 +15,10 @@ const CharacterFinder = () => {
         try {
             const character = await axios.get(`/pokemon/${pokemon}`);
             console.log(character.data);
+
+            const id = await axios.get(`/characteristic/${character.data.id}`);
+
+            dispatch(updateDataCharacter(character.data, id.data.descriptions));
             dispatch(updateStateModal(true));
         } catch (error) {
             console.log(error);
