@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { updateStateModal } from '../store/actions/action.modal';
 import { updateDataCharacter } from '../store/actions/action.dataCharacter';
 import Downshift from 'downshift';
+import { listPokemons } from '../assets/constants/listPokemons';
 
 import axios from 'axios';
 
@@ -12,12 +13,13 @@ const CharacterFinder = () => {
     const [stateListPokemon, setStateListPokemon] = useState([]);
     const [inputValidation, setInputValidation] = useState(false);
     const dispatch = useDispatch();
-    const list: any[] = ['leandro', 'emanuel'];
+    const list: any[] = [];
+
+    listPokemons.pokemons.map((item: any) => list.push(item.name));
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
     const listPokemon = async () => {
         const pokemons = await axios.get('/pokemon');
-        pokemons.data.results.map((item: any) => list.push(item.name));
         console.log(list);
 
         setStateListPokemon(pokemons.data.results);
@@ -39,11 +41,14 @@ const CharacterFinder = () => {
             setInputValidation(false);
             dispatch(updateDataCharacter(character.data, id.data.descriptions));
             dispatch(updateStateModal(true));
-            setPokemon('e.target.value');
         } catch (error) {
             console.log(error);
             setInputValidation(true);
         }
+    };
+
+    const selectPokemon = (e: any) => {
+        setPokemon(e.target.value);
     };
 
     return (
@@ -71,9 +76,7 @@ const CharacterFinder = () => {
                         </button>
                     </div>
                     <Downshift
-                        onChange={(selection) =>
-                            alert(selection ? `You selected ${selection}` : 'Selection Cleared')
-                        }
+                        onChange={(selection) => setPokemon(selection)}
                         itemToString={(item) => (item ? item : '')}
                     >
                         {({
@@ -87,8 +90,11 @@ const CharacterFinder = () => {
                             <div className="m-auto w-full">
                                 <div className="flex flex-col justify-center ">
                                     <input
-                                        placeholder="Ingresa un nombre..."
-                                        className="rounded-l-full  text-gray-700 leading-tight focus:outline-none"
+                                        placeholder="Ingresa un nombre.."
+                                        className="text-gray-700 leading-tight focus:outline-none"
+                                        onChange={() => {
+                                            selectPokemon;
+                                        }}
                                         {...getInputProps()}
                                     />
                                     <div>
