@@ -11,7 +11,7 @@ const ListItems = () => {
         }
     };
     return (
-        <div className="flex justify-around flex-wrap">
+        <div className="flex justify-around flex-wrap mt-6">
             <button
                 className="flex items-center w-48 h-16 pl-4 mb-6 bg-green-300 rounded-xl"
                 onClick={() => itemSelect('pokemon')}
