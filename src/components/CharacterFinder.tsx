@@ -1,15 +1,33 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { updateStateModal } from '../store/actions/action.modal';
 import { updateDataCharacter } from '../store/actions/action.dataCharacter';
+import Downshift from 'downshift';
 
 import axios from 'axios';
 
 const CharacterFinder = () => {
     axios.defaults.baseURL = 'https://pokeapi.co/api/v2';
     const [pokemon, setPokemon] = useState('');
+    const [stateListPokemon, setStateListPokemon] = useState([]);
     const [inputValidation, setInputValidation] = useState(false);
     const dispatch = useDispatch();
+    const list: any[] = ['leandro', 'emanuel'];
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    const listPokemon = async () => {
+        const pokemons = await axios.get('/pokemon');
+        pokemons.data.results.map((item: any) => list.push(item.name));
+        console.log(list);
+
+        setStateListPokemon(pokemons.data.results);
+        console.log(stateListPokemon);
+    };
+
+    useEffect(() => {
+        listPokemon();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     const clickPokemon = async (event: React.FormEvent) => {
         event.preventDefault();
@@ -21,15 +39,17 @@ const CharacterFinder = () => {
             setInputValidation(false);
             dispatch(updateDataCharacter(character.data, id.data.descriptions));
             dispatch(updateStateModal(true));
+            setPokemon('e.target.value');
         } catch (error) {
             console.log(error);
             setInputValidation(true);
         }
     };
+
     return (
         <div>
             <form onSubmit={clickPokemon} className="p-4 flex justify-center ">
-                <div className="bg-white flex items-center rounded-full shadow-xl w-96">
+                <div className="bg-white flex justify-center items-center rounded-full shadow-xl w-96">
                     <div className="p-4">
                         <button
                             type="submit"
@@ -50,15 +70,67 @@ const CharacterFinder = () => {
                             </svg>
                         </button>
                     </div>
-
-                    <input
-                        className="rounded-l-full py-4 px-6 text-gray-700 leading-tight focus:outline-none"
-                        id="search"
-                        type="text"
-                        placeholder="Buscar Pokemon..."
-                        onChange={(e) => setPokemon(e.target.value)}
-                        required
-                    />
+                    <Downshift
+                        onChange={(selection) =>
+                            alert(selection ? `You selected ${selection}` : 'Selection Cleared')
+                        }
+                        itemToString={(item) => (item ? item : '')}
+                    >
+                        {({
+                            getInputProps,
+                            getItemProps,
+                            getMenuProps,
+                            isOpen,
+                            inputValue,
+                            highlightedIndex,
+                        }) => (
+                            <div className="m-auto w-full">
+                                <div className="flex flex-col justify-center ">
+                                    <input
+                                        placeholder="Ingresa un nombre..."
+                                        className="rounded-l-full  text-gray-700 leading-tight focus:outline-none"
+                                        {...getInputProps()}
+                                    />
+                                    <div>
+                                        <ul
+                                            className="mt-2 w-40 rounded bg-gray-100 fixed"
+                                            {...getMenuProps()}
+                                        >
+                                            {isOpen
+                                                ? list
+                                                      .filter(
+                                                          (item) =>
+                                                              !inputValue ||
+                                                              item
+                                                                  .toLowerCase()
+                                                                  .includes(
+                                                                      inputValue.toLowerCase(),
+                                                                  ),
+                                                      )
+                                                      .map((item, index) => (
+                                                          <li
+                                                              key={index}
+                                                              {...getItemProps({
+                                                                  key: item,
+                                                                  index,
+                                                                  item,
+                                                                  className: `py-2 px-2 ${
+                                                                      highlightedIndex === index
+                                                                          ? 'bg-white font-bold'
+                                                                          : 'bg-gray-100'
+                                                                  }`,
+                                                              })}
+                                                          >
+                                                              {item}
+                                                          </li>
+                                                      ))
+                                                : null}
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+                    </Downshift>
                 </div>
             </form>
             {inputValidation === true && (
