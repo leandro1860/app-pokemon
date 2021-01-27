@@ -4,6 +4,10 @@ import MainTitle from './components/MainTitle/MainTitle';
 import CharacterFinder from './components/characterFinder/CharacterFinder';
 import ListItems from './components/listItems/ListItems';
 import MainModal from './components/MainModal/MainModal';
+import Pokedex from './pages/pokedex/Pokedex';
+import Abilities from './pages/abilities/Abilities';
+import Locations from './pages/locations/Locations';
+import Types from './pages/types/Types';
 
 const App = () => {
     return (
@@ -11,16 +15,16 @@ const App = () => {
             <div>
                 <Switch>
                     <Route path="/pokedex">
-                        <div>Pokedex</div>
+                        <Pokedex />
                     </Route>
                     <Route path="/abilities">
-                        <div>abilities</div>
+                        <Abilities />
                     </Route>
                     <Route path="/locations">
-                        <div>locations</div>
+                        <Locations />
                     </Route>
                     <Route path="/types">
-                        <div>types</div>
+                        <Types />
                     </Route>
                     <Route path="/">
                         <MainTitle />
