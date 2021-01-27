@@ -36,7 +36,10 @@ const MainModal = () => {
                                 </div>
                                 <div className="flex flex-col items-center relative p-4 flex-auto">
                                     <h1>ALTURA</h1>
-                                    {dataCharacter.height * 0.1} m
+                                    {dataCharacter.height.length * 0.1 < 5
+                                        ? dataCharacter.height * 0.1
+                                        : (dataCharacter.height * 0.1).toFixed(2)}{' '}
+                                    m
                                 </div>
                                 <div className="flex flex-col items-center justify-center relative p-4 flex-auto">
                                     <h1>PESO</h1>
