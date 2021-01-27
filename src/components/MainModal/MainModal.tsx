@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { updateStateModal } from '../store/actions/action.modal';
+import { updateStateModal } from '../../store/actions/action.modal';
 
 const MainModal = () => {
     const stateModal = useSelector((state: any) => state.reducerModal.stateModal);
@@ -8,9 +8,6 @@ const MainModal = () => {
     const characteristicsCharacter = useSelector(
         (state: any) => state.reducerDataCharacter.characteristicsCharacter,
     );
-
-    console.log(dataCharacter);
-
     const dispatch = useDispatch();
 
     return (
@@ -19,9 +16,7 @@ const MainModal = () => {
                 <div>
                     <div className="justify-center items-center flex  overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
                         <div className="w-3/6 mt-6 relative my-6 mx-auto max-w-3xl">
-                            {/*content*/}
                             <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
-                                {/*header*/}
                                 <div className="flex items-start justify-between p-5 border-b border-solid border-gray-300 rounded-t">
                                     <h3 className="text-3xl font-semibold">
                                         {dataCharacter.name.charAt(0).toUpperCase() +
@@ -36,7 +31,6 @@ const MainModal = () => {
                                         </span>
                                     </button>
                                 </div>
-                                {/*body*/}
                                 <div className="flex justify-center">
                                     <img src={dataCharacter.sprites.front_default} alt="" />
                                 </div>
@@ -72,7 +66,6 @@ const MainModal = () => {
                                         </p>
                                     ))}
                                 </div>
-                                {/*footer*/}
                                 <div className="flex contents-center justify-center  border-t border-solid border-gray-300 rounded-b">
                                     <button
                                         className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1"
