@@ -57,7 +57,7 @@
     "devDependencies": {
         "@types/react-redux": "^7.1.16",
         "@types/react-router-dom": "^5.1.7",
-        "@types/react-select": "^4.0.3",
+        "@types/react-select": "^4.0.4",
         "@types/redux": "^3.6.0",
         "@types/redux-thunk": "^2.1.0",
         "eslint-config-prettier": "^7.2.0",

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Select from 'react-select';
+import Select, { ValueType } from 'react-select';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { customStyles } from './styles/selectCharacter';
@@ -9,22 +9,20 @@ import { faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 import { updateStateModal } from '../../store/actions/action.modal';
 import { updateDataCharacter } from '../../store/actions/action.dataCharacter';
 import { listPokemons } from '../../assets/constants/listPokemons';
+import { Value } from './types';
 
 const CharacterFinder = () => {
     axios.defaults.baseURL = 'https://pokeapi.co/api/v2';
     const [inputValidation, setInputValidation] = useState(false);
     const dispatch = useDispatch();
-
-    const selectedPokemon = async (value: any) => {
+    const selectedPokemon = async (value: ValueType<Value, false>) => {
         try {
-            const character = await axios.get(`/pokemon/${value.label}`);
-            const id = await axios.get(`/characteristic/${character.data.id}`);
-            setInputValidation(false);
-            dispatch(updateDataCharacter(character.data, id.data.descriptions));
+            const character = await axios.get(`/pokemon/${value ? value.label : null}`);
+            dispatch(updateDataCharacter(character.data));
             dispatch(updateStateModal(true));
         } catch (error) {
             console.log(error);
-            value !== null ? setInputValidation(true) : null;
+            value ? setInputValidation(true) : null;
         }
     };
 
@@ -39,7 +37,7 @@ const CharacterFinder = () => {
                     </div>
                     <Select
                         styles={customStyles}
-                        name="color"
+                        classNamePrefix="select"
                         options={listPokemons}
                         onChange={selectedPokemon}
                         placeholder={'Elija un pokémon..'}
@@ -47,7 +45,7 @@ const CharacterFinder = () => {
                     />{' '}
                 </div>
             </form>
-            {inputValidation === true && (
+            {inputValidation && (
                 <div className="flex justify-center content-center text-red-500">
                     <div>
                         <FontAwesomeIcon className="mr-3" icon={faTimesCircle} />

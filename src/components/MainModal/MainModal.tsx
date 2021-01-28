@@ -1,18 +1,20 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { updateStateModal } from '../../store/actions/action.modal';
+import { typeState } from '../../store/store';
+import { Types } from './types';
+import { abilityTypes } from './types';
 
 const MainModal = () => {
-    const stateModal = useSelector((state: any) => state.reducerModal.stateModal);
-    const dataCharacter = useSelector((state: any) => state.reducerDataCharacter.dataCharacter);
-    const characteristicsCharacter = useSelector(
-        (state: any) => state.reducerDataCharacter.characteristicsCharacter,
+    const stateModal = useSelector((state: typeState) => state.reducerModal.stateModal);
+    const dataCharacter = useSelector(
+        (state: typeState) => state.reducerDataCharacter.dataCharacter,
     );
     const dispatch = useDispatch();
 
     return (
         <div>
-            {stateModal === true ? (
+            {stateModal && (
                 <div>
                     <div className="justify-center items-center flex  overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
                         <div className="w-3/6 mt-6 relative my-6 mx-auto max-w-3xl">
@@ -47,7 +49,7 @@ const MainModal = () => {
                                 </div>
                                 <div className="flex flex-col items-center justify-center relative p-4 flex-auto">
                                     <h1>TIPO DE POKEMON</h1>
-                                    {dataCharacter.types.map((item: any, index: number) => (
+                                    {dataCharacter.types.map((item: Types, index: number) => (
                                         <p key={index}>
                                             {' '}
                                             {item.type.name.charAt(0).toUpperCase() +
@@ -56,18 +58,20 @@ const MainModal = () => {
                                     ))}
                                 </div>
                                 <div className="flex flex-col items-center relative p-4 flex-auto">
-                                    <h1>CARACTERÍSTICAS</h1>
-                                    {characteristicsCharacter[2].description}
+                                    <h1>EXPERIENCIA BASE</h1>
+                                    {dataCharacter.base_experience} puntos
                                 </div>
                                 <div className="flex flex-col items-center relative p-4 flex-auto">
                                     <h1>HABILIDADES</h1>
-                                    {dataCharacter.abilities.map((item: any, index: number) => (
-                                        <p key={index}>
-                                            {' '}
-                                            {item.ability.name.charAt(0).toUpperCase() +
-                                                item.ability.name.slice(1)}
-                                        </p>
-                                    ))}
+                                    {dataCharacter.abilities.map(
+                                        (item: abilityTypes, index: number) => (
+                                            <p key={index}>
+                                                {' '}
+                                                {item.ability.name.charAt(0).toUpperCase() +
+                                                    item.ability.name.slice(1)}
+                                            </p>
+                                        ),
+                                    )}
                                 </div>
                                 <div className="flex contents-center justify-center  border-t border-solid border-gray-300 rounded-b">
                                     <button
@@ -84,7 +88,7 @@ const MainModal = () => {
                     </div>
                     <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
                 </div>
-            ) : null}
+            )}
         </div>
     );
 };
