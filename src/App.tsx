@@ -4,7 +4,7 @@ import MainTitle from './components/MainTitle/MainTitle';
 import CharacterFinder from './components/characterFinder/CharacterFinder';
 import ListItems from './components/listItems/ListItems';
 import MainModal from './components/MainModal/MainModal';
-import Pokedex from './pages/pokedex/Pokedex';
+import Pokemons from './pages/pokemons/Pokemons';
 import Abilities from './pages/abilities/Abilities';
 import Locations from './pages/locations/Locations';
 import Types from './pages/types/Types';
@@ -14,8 +14,8 @@ const App = () => {
         <Router>
             <div>
                 <Switch>
-                    <Route path="/pokedex">
-                        <Pokedex />
+                    <Route path="/pokemons">
+                        <Pokemons />
                     </Route>
                     <Route path="/abilities">
                         <Abilities />
