@@ -12,7 +12,7 @@ import Types from './pages/types/Types';
 const App = () => {
     return (
         <Router>
-            <div>
+            <div className="w-full h-full">
                 <Switch>
                     <Route path="/pokemons">
                         <Pokemons />
