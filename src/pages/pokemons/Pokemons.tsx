@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import Background from '../../assets/images/pokemonRoadBackground.jpeg';
+import './style/pokemons.css';
 
 const Pokemons = () => {
     const [url, setUrl] = useState('https://pokeapi.co/api/v2/pokemon');
@@ -30,7 +30,10 @@ const Pokemons = () => {
                 type: type,
             },
         ]);
-        setLoading(false);
+
+        setTimeout(() => {
+            setLoading(false);
+        }, 1000);
     };
 
     const next = () => {
@@ -44,17 +47,14 @@ const Pokemons = () => {
     }, [url]);
 
     return (
-        <div
-            style={{
-                backgroundImage: `url(${Background})`,
-                backgroundRepeat: 'no-repeat',
-                backgroundSize: '100% 100%',
-            }}
-        >
+        <div className="background">
             {loading ? (
-                'Leandro'
+                <div className="flex h-screen flex-col justify-center items-center">
+                    <div className="loader ease-linear rounded-full border-8 border-t-8 border-gray-200 h-32 w-32"></div>
+                    <p className="text-yellow-200 text-3xl mt-2">Cargando..</p>
+                </div>
             ) : (
-                <div className="flex flex-col ">
+                <div className="flex h-full flex-col ">
                     <div className="flex justify-center flex-wrap">
                         {data.map((item: any, index: number) =>
                             item.name ? (

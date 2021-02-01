@@ -1,9 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import MainTitle from './components/MainTitle/MainTitle';
-import CharacterFinder from './components/characterFinder/CharacterFinder';
-import ListItems from './components/listItems/ListItems';
-import MainModal from './components/MainModal/MainModal';
+import Header from './components/header/Header';
+import Main from './pages/main/Main';
 import Pokemons from './pages/pokemons/Pokemons';
 import Abilities from './pages/abilities/Abilities';
 import Locations from './pages/locations/Locations';
@@ -12,7 +10,8 @@ import Types from './pages/types/Types';
 const App = () => {
     return (
         <Router>
-            <div className="w-full h-full">
+            <div className="h-screen">
+                <Header />
                 <Switch>
                     <Route path="/pokemons">
                         <Pokemons />
@@ -27,10 +26,7 @@ const App = () => {
                         <Types />
                     </Route>
                     <Route path="/">
-                        <MainTitle />
-                        <CharacterFinder />
-                        <ListItems />
-                        <MainModal />
+                        <Main />
                     </Route>
                 </Switch>
             </div>
