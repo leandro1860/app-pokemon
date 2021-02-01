@@ -27,7 +27,7 @@ const CharacterFinder = () => {
     };
 
     return (
-        <div>
+        <div className="flex flex-col">
             <form className="p-4 flex justify-center ">
                 <div className="bg-white flex justify-center items-center rounded-full shadow-xl w-96">
                     <div className="py-4 mr-4">

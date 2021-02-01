@@ -1,10 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import MainTitle from './components/MainTitle/MainTitle';
-import CharacterFinder from './components/characterFinder/CharacterFinder';
-import ListItems from './components/listItems/ListItems';
-import MainModal from './components/MainModal/MainModal';
-import Pokedex from './pages/pokedex/Pokedex';
+import Header from './components/header/Header';
+import Main from './pages/main/Main';
+import Pokemons from './pages/pokemons/Pokemons';
 import Abilities from './pages/abilities/Abilities';
 import Locations from './pages/locations/Locations';
 import Types from './pages/types/Types';
@@ -12,10 +10,11 @@ import Types from './pages/types/Types';
 const App = () => {
     return (
         <Router>
-            <div>
+            <div className="h-screen">
+                <Header />
                 <Switch>
-                    <Route path="/pokedex">
-                        <Pokedex />
+                    <Route path="/pokemons">
+                        <Pokemons />
                     </Route>
                     <Route path="/abilities">
                         <Abilities />
@@ -27,10 +26,7 @@ const App = () => {
                         <Types />
                     </Route>
                     <Route path="/">
-                        <MainTitle />
-                        <CharacterFinder />
-                        <ListItems />
-                        <MainModal />
+                        <Main />
                     </Route>
                 </Switch>
             </div>
