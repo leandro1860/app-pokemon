@@ -40,7 +40,7 @@ const CharacterFinder = () => {
                         classNamePrefix="select"
                         options={listPokemons}
                         onChange={selectedPokemon}
-                        placeholder={'Elija un pokémon..'}
+                        placeholder={'Elija un personaje..'}
                         isClearable
                     />{' '}
                 </div>

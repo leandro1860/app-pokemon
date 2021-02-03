@@ -6,7 +6,7 @@ import MainModal from '../../components/MainModal/MainModal';
 
 const Main = () => {
     return (
-        <div className="flex flex-col justify-center h-full">
+        <div className="flex flex-col justify-center items-center h-screen pt-20">
             <MainTitle />
             <CharacterFinder />
             <ListItems />

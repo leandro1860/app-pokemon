@@ -9,21 +9,7 @@ const ListItems = () => {
                 to="/pokemons"
                 className="flex items-center w-48 h-16 pl-4 m-3 bg-green-300 rounded-xl"
             >
-                <p>Pokedex</p>
-            </Link>
-            <Link
-                to="/abilities"
-                className="flex items-center w-48 h-16 pl-4 m-3 bg-blue-400 rounded-xl"
-                onClick={() => itemSelect('ability')}
-            >
-                <p>Abilities</p>
-            </Link>
-            <Link
-                to="/locations"
-                className="flex items-center w-48 h-16 pl-4 m-3 bg-red-500 rounded-xl"
-                onClick={() => itemSelect('location')}
-            >
-                <p>Locations</p>
+                <p>Pokemons</p>
             </Link>
             <Link
                 to="/types"
