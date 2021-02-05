@@ -13,3 +13,9 @@ This project was bootstrapped with [Create React App]
 - yarn install or npm install
 
 - yarn start or npm start
+
+
+
+
+
+![screenshots-app](https://user-images.githubusercontent.com/52302978/107089007-ab56f180-67dc-11eb-9cac-c3699a276886.png)
