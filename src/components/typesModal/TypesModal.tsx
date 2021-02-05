@@ -1,9 +1,13 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { updateStateTypeModal } from '../../store/actions/action.typeModal';
 import { typeState } from '../../store/store';
 /* import { Types } from './types';
 import { abilityTypes } from './types'; */
+import MainModal from '../../components/MainModal/MainModal';
+import { selectedPokemon } from '../../assets/callsApi/callsApi';
+import { getColour } from '../../assets/getColour/getColours';
 
 const TypesModal = () => {
     const dispatch = useDispatch();
@@ -14,40 +18,41 @@ const TypesModal = () => {
 
     const nameAbility = useSelector((state: typeState) => state.reducerTypeModal.nameAbility);
 
+    const selectedPokemon1 = (data: any) => {
+        selectedPokemon(data);
+    };
+
     return (
         stateTypeModal && (
             <div>
-                <div className="h-screen bg-red-200 flex mb-20 justify-center items-center  overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
-                    <div className="w-4/5">
-                        <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
-                            <div className="flex h-10 items-center justify-between p-8 border-b border-solid border-gray-300 rounded-t">
-                                <p>Personajes con habilidad {nameAbility.toUpperCase()} </p>
-                                <button
-                                    className="p-1 ml-auto bg-transparent border-0 text-black float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
-                                    onClick={() => dispatch(updateStateTypeModal(false, ''))}
-                                >
-                                    <span className="bg-transparent h-12 text-red-600 h-auto w-auto text-2xl block outline-none focus:outline-none">
-                                        ×
-                                    </span>
-                                </button>
+                <div className="h-screen flex mb-20 justify-center items-center  overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none bg-gray-600 bg-opacity-75">
+                    <div className="w-11/12 max-w-2xl">
+                        <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full h-full bg-white outline-none focus:outline-none p-2">
+                            <div className="flex h-10 items-center justify-center py-8 px-2 border-b border-solid border-gray-300 rounded-t">
+                                <h3 className="text-xl font-semibold">
+                                    Personajes con habilidad {nameAbility.toUpperCase()}{' '}
+                                </h3>
                             </div>
 
                             <div className="flex justify-center items-center flex-wrap overflow-auto h-96 p-4">
                                 {pokemonAbility.map((item: any, index: number) =>
                                     item.pokemon ? (
                                         <button
-                                            className={`bg-black rounded-xl bg-red-600 p-2 m-1 text-white`}
+                                            className={`${getColour()} bg-black rounded-xl py-1 px-2 m-1 text-white focus:outline-none`}
                                             key={index}
+                                            onClick={() => selectedPokemon1(item.pokemon.name)}
                                         >
-                                            {item.pokemon.name.charAt(0).toUpperCase() +
-                                                item.pokemon.name.slice(1)}
+                                            <p className="text-sm">
+                                                {item.pokemon.name.charAt(0).toUpperCase() +
+                                                    item.pokemon.name.slice(1)}
+                                            </p>
                                         </button>
                                     ) : null,
                                 )}
                             </div>
-                            <div className="flex contents-center justify-center p-4 border-t border-solid border-gray-300 rounded-b">
+                            <div className="flex contents-center justify-center border-t border-solid border-gray-300 rounded-b">
                                 <button
-                                    className="text-red-500 background-transparent font-bold uppercase text-sm outline-none focus:outline-none mr-1 mb-1"
+                                    className="pt-2 text-red-500 background-transparent font-bold uppercase text-sm outline-none focus:outline-none"
                                     type="button"
                                     style={{ transition: 'all .15s ease' }}
                                     onClick={() => dispatch(updateStateTypeModal(false, ''))}
@@ -59,6 +64,7 @@ const TypesModal = () => {
                     </div>
                 </div>
                 <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
+                <MainModal />
             </div>
         )
     );

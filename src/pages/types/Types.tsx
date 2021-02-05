@@ -5,14 +5,13 @@ import { useDispatch } from 'react-redux';
 import TypesModal from '../../components/typesModal/TypesModal';
 import { updateStateTypeModal } from '../../store/actions/action.typeModal';
 import { pokemonAbility } from '../../store/actions/action.pokemonAbility';
+import { getColour } from '../../assets/getColour/getColours';
 
 const Types = () => {
     const [data, setData] = useState([{}]);
-    const colour: any = ['bg-yellow-300', 'bg-red-400', 'bg-green-200'];
     const [loading, setLoading] = useState(true);
     const dispatch = useDispatch();
     const url = 'https://pokeapi.co/api/v2/type';
-    let numberColour = 0;
 
     const getTypes = async () => {
         const types = await axios.get(url);
@@ -40,40 +39,25 @@ const Types = () => {
         pokemonsAbilities(url);
     };
 
-    const getColour = (data: any) => {
-        if (numberColour === 0) {
-            numberColour++;
-            return colour[0];
-        } else if (numberColour === 1) {
-            numberColour++;
-            return colour[1];
-        } else if (numberColour === 2) {
-            numberColour = 0;
-            return colour[2];
-        }
-    };
-
     useEffect(() => {
         getTypes();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [url]);
 
-    return (
-        <div className="flex justify-center ">
-            {loading ? (
-                <div className="flex h-screen flex-col justify-center items-center pt-20">
-                    <div className="loader ease-linear rounded-full border-8 border-t-8 border-gray-200 h-32 w-32"></div>
-                    <p className="text-yellow-200 text-3xl mt-2">Cargando..</p>
-                </div>
-            ) : (
-                <div className="flex h-screen pt-20 justify-center items-center flex-wrap">
-                    <div>
+    return loading ? (
+        <div className="flex h-full flex-col justify-center items-center background">
+            <div className="loader ease-linear rounded-full border-8 border-t-8 border-gray-200 h-32 w-32"></div>
+            <p className="text-yellow-200 text-3xl mt-2">Cargando..</p>
+        </div>
+    ) : (
+        <div className="flex flex-col background h-full w-full">
+            <div className="flex flex-col background h-full justify-center items-center">
+                <div className="flex justify-center w-4/5">
+                    <div className="flex justify-center items-center flex-wrap">
                         {data.map((item: any, index: number) =>
                             item.name ? (
                                 <button
-                                    className={`${getColour(
-                                        index,
-                                    )} rounded-xl bg-red-600 h-12 w-28 m-2 text-white`}
+                                    className={`${getColour()} rounded-xl bg-red-600 px-5 m-2 text-white`}
                                     key={index}
                                     onClick={() => selectedAbility(item.url, item.name)}
                                 >
@@ -84,7 +68,12 @@ const Types = () => {
                         <TypesModal />
                     </div>
                 </div>
-            )}
+            </div>
+            <div className="flex items-center fixed h-full w-8 pb-20 ">
+                <div className="flex items-center justify-center bg-black w-full h-48 rounded-r-3xl bg-indigo-900 ">
+                    <p className="transform -rotate-90 text-yellow-300 text-xl">TYPES</p>
+                </div>
+            </div>
         </div>
     );
 };
