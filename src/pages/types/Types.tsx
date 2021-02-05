@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
@@ -13,22 +12,6 @@ const Types = () => {
     const dispatch = useDispatch();
     const url = 'https://pokeapi.co/api/v2/type';
 
-    const getTypes = async () => {
-        const types = await axios.get(url);
-        types.data.results.map((item: any) =>
-            setData((data) => [
-                ...data,
-                {
-                    name: item.name,
-                    url: item.url,
-                },
-            ]),
-        );
-        setTimeout(() => {
-            setLoading(false);
-        }, 500);
-    };
-
     const pokemonsAbilities = async (url: any) => {
         const pokemons = await axios.get(url);
         dispatch(pokemonAbility(pokemons.data.pokemon));
@@ -40,14 +23,28 @@ const Types = () => {
     };
 
     useEffect(() => {
+        const getTypes = async () => {
+            const types = await axios.get(url);
+            types.data.results.map((item: any) =>
+                setData((data) => [
+                    ...data,
+                    {
+                        name: item.name,
+                        url: item.url,
+                    },
+                ]),
+            );
+            setTimeout(() => {
+                setLoading(false);
+            }, 500);
+        };
         getTypes();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [url]);
 
     return loading ? (
         <div className="flex h-full flex-col justify-center items-center background">
             <div className="loader ease-linear rounded-full border-8 border-t-8 border-gray-200 h-32 w-32"></div>
-            <p className="text-yellow-200 text-3xl mt-2">Cargando..</p>
+            <p className="text-yellow-200 text-3xl mt-2">Loading..</p>
         </div>
     ) : (
         <div className="flex flex-col background h-full w-full">

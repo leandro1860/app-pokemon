@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './style/pokemons.css';
 import { selectedPokemon } from '../../assets/callsApi/callsApi';
-import MainModal from '../../components/MainModal/MainModal';
+import MainModal from '../../components/mainModal/MainModal';
 
 const Pokemons = () => {
     const [url, setUrl] = useState('https://pokeapi.co/api/v2/pokemon');
@@ -10,13 +10,6 @@ const Pokemons = () => {
     const [loadMore, setLoadMore] = useState(true);
     const [loading, setLoading] = useState(true);
     const [data, setData] = useState([{}]);
-
-    const getUrlPokemons = async () => {
-        const pokemons = await axios.get(url);
-        pokemons.data.results.map((item: any) => getPokemon(item.url));
-        setNextUrl(pokemons.data.next);
-        pokemons.data.next ? setLoadMore(true) : setLoadMore(true);
-    };
 
     const getPokemon = async (data: any) => {
         const pokemon = await axios.get(data);
@@ -42,23 +35,28 @@ const Pokemons = () => {
     };
 
     useEffect(() => {
+        const getUrlPokemons = async () => {
+            const pokemons = await axios.get(url);
+            pokemons.data.results.map((item: any) => getPokemon(item.url));
+            setNextUrl(pokemons.data.next);
+            pokemons.data.next ? setLoadMore(true) : setLoadMore(true);
+        };
         getUrlPokemons();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [url]);
 
-    const selectedPokemon1 = (data: any) => {
-        selectedPokemon(data);
+    const selectedPokemon1 = (data: string) => {
+        data ? selectedPokemon({ label: data, value: '', url: '' }) : null;
     };
 
     return loading ? (
-        <div className="flex justify-center items-center h-full background">
+        <div className="flex justify-center items-center h-full background ">
             <div className="flex flex-col justify-center items-center">
                 <div className="loader ease-linear rounded-full border-8 border-t-8 border-gray-200 h-32 w-32"></div>
                 <p className="text-yellow-200 text-3xl mt-2">Cargando..</p>
             </div>
         </div>
     ) : (
-        <div className="flex flex-col background h-full">
+        <div className="flex flex-col background h-full ">
             <div className="flex justify-center w-full ">
                 <div className="flex justify-center flex-wrap w-11/12">
                     {data.map((item: any, index: number) =>
@@ -104,10 +102,10 @@ const Pokemons = () => {
                 <div className="flex justify-center w-full">
                     <div className="flex justify-center w-7/12 px-4">
                         <button
-                            className="bg-green-700 text-white rounded-2xl h-10 my-6 focus:outline-none w-full"
+                            className="bg-green-400 text-white rounded-2xl h-10 my-6 focus:outline-none w-full"
                             onClick={() => next()}
                         >
-                            Cargar mas
+                            Load more..
                         </button>{' '}
                     </div>
                 </div>

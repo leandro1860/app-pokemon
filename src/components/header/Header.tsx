@@ -7,10 +7,10 @@ const Header = () => {
     return (
         <div className="fixed flex w-full justify-between items-center max-h-20	bg-indigo-900 border-solid border-yellow-100 border-b-1 px-6">
             <Link to="/">
-                <img className="max-h-20" src={logo} alt="" />
+                <img className="max-h-20" src={logo} alt="Pokemonlogo" />
             </Link>
             <Link to="/">
-                <img className="h-full max-h-12" src={sphere} alt="" />
+                <img className="h-full max-h-12" src={sphere} alt="Pokemon sphere" />
             </Link>
         </div>
     );
