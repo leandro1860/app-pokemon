@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/app-pokemon/static/css/main.829188f2.chunk.css",
+    "main.js": "/app-pokemon/static/js/main.33d5c2f4.chunk.js",
+    "main.js.map": "/app-pokemon/static/js/main.33d5c2f4.chunk.js.map",
+    "runtime-main.js": "/app-pokemon/static/js/runtime-main.14743720.js",
+    "runtime-main.js.map": "/app-pokemon/static/js/runtime-main.14743720.js.map",
+    "static/js/2.905bb50d.chunk.js": "/app-pokemon/static/js/2.905bb50d.chunk.js",
+    "static/js/2.905bb50d.chunk.js.map": "/app-pokemon/static/js/2.905bb50d.chunk.js.map",
+    "static/js/3.f57b7f7e.chunk.js": "/app-pokemon/static/js/3.f57b7f7e.chunk.js",
+    "static/js/3.f57b7f7e.chunk.js.map": "/app-pokemon/static/js/3.f57b7f7e.chunk.js.map",
+    "index.html": "/app-pokemon/index.html",
+    "static/css/main.829188f2.chunk.css.map": "/app-pokemon/static/css/main.829188f2.chunk.css.map",
+    "static/js/2.905bb50d.chunk.js.LICENSE.txt": "/app-pokemon/static/js/2.905bb50d.chunk.js.LICENSE.txt",
+    "static/media/header-pokemon-logo.51f7c7fc.png": "/app-pokemon/static/media/header-pokemon-logo.51f7c7fc.png",
+    "static/media/header-pokemon-sphere.bdf2390f.png": "/app-pokemon/static/media/header-pokemon-sphere.bdf2390f.png",
+    "static/media/pokemons.css": "/app-pokemon/static/media/pokemonRoadBackground.4a9c7f3b.jpeg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.14743720.js",
+    "static/js/2.905bb50d.chunk.js",
+    "static/css/main.829188f2.chunk.css",
+    "static/js/main.33d5c2f4.chunk.js"
+  ]
+}
