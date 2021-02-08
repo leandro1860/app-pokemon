@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
-import TypesModal from '../../components/typesModal/TypesModal';
+import TypesModal from '../../components/TypesModal/TypesModal';
 import { updateStateTypeModal } from '../../store/actions/action.typeModal';
 import { pokemonAbility } from '../../store/actions/action.pokemonAbility';
 import { getColour } from '../../assets/getColour/getColours';

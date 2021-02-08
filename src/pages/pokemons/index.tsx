@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './style/pokemons.css';
 import { selectedPokemon } from '../../assets/callsApi/callsApi';
-import MainModal from '../../components/mainModal/MainModal';
+import MainModal from '../../components/MainModal/MainModal';
 
 const Pokemons = () => {
     const [url, setUrl] = useState('https://pokeapi.co/api/v2/pokemon');

@@ -1,7 +1,6 @@
 import React from 'react';
 import Select, { ValueType } from 'react-select';
 import { useSelector, useDispatch } from 'react-redux';
-import { customStyles } from './styles/selectCharacter';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { faTimesCircle } from '@fortawesome/free-solid-svg-icons';
@@ -10,6 +9,7 @@ import { selectedPokemon } from '../../assets/callsApi/callsApi';
 import { callApiError } from '../../store/actions/action.dataCharacter';
 import { typeState } from '../../store/store';
 import { Value } from './types';
+import { customStyles } from './styles/selectCharacter';
 
 const CharacterFinder = () => {
     const dispatch = useDispatch();

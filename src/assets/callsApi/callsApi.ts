@@ -1,7 +1,7 @@
 import axios from 'axios';
 import store from '../../store/store';
 import { ValueType } from 'react-select';
-import { Value } from '../../components/characterFinder/types';
+import { Value } from '../../components/CharacterFinder/types';
 import { updateStateModal } from '../../store/actions/action.modal';
 import { updateDataCharacter } from '../../store/actions/action.dataCharacter';
 import { callApiError } from '../../store/actions/action.dataCharacter';

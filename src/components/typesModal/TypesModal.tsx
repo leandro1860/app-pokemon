@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { updateStateTypeModal } from '../../store/actions/action.typeModal';
 import { typeState } from '../../store/store';
-import MainModal from '../mainModal/MainModal';
+import MainModal from '../MainModal/MainModal';
 import { selectedPokemon } from '../../assets/callsApi/callsApi';
 import { getColour } from '../../assets/getColour/getColours';
 

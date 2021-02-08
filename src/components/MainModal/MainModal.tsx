@@ -2,8 +2,7 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { updateStateModal } from '../../store/actions/action.modal';
 import { typeState } from '../../store/store';
-import { Types } from './types';
-import { abilityTypes } from './types';
+import { AbilityTypes, Types } from './types';
 
 const MainModal = () => {
     const stateModal = useSelector((state: typeState) => state.reducerModal.stateModal);
@@ -64,7 +63,7 @@ const MainModal = () => {
                                 <div className="flex flex-col items-center relative p-4 flex-auto">
                                     <h1 className="font-semibold">ABILITIES</h1>
                                     {dataCharacter.abilities.map(
-                                        (item: abilityTypes, index: number) => (
+                                        (item: AbilityTypes, index: number) => (
                                             <p className="text-green-500" key={index}>
                                                 {' '}
                                                 {item.ability.name.charAt(0).toUpperCase() +

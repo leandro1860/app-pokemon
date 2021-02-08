@@ -6,7 +6,7 @@ export type Types = {
     };
 };
 
-export type abilityTypes = {
+export type AbilityTypes = {
     ability: {
         name: string;
         url: string;
